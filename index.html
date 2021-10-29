@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" class="flexgrid">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Baloo+Tamma'><link rel="stylesheet" href="./style.css">
+<style>
+
+@charset "UTF-8";
+/** 
+* Make flexbox grids super easy!
+* ---
+* @param $cols  —  Number of columns
+* @param $margin  —  Margin with unit
+*/
+@media screen and (min-width: 600px) and (max-width: 799px) {
+  .flexgrid .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .flexgrid .container:after {
+    flex: auto;
+    margin: 0 auto;
+    content: "";
+  }
+  .flexgrid .container > * {
+    width: calc( 50% - 0.5rem );
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .flexgrid .container > *:nth-child(1) {
+    margin-left: 0;
+  }
+  .flexgrid .container > *:nth-child(2n) {
+    margin-right: 0;
+  }
+  .flexgrid .container > *:nth-child(2n+1) {
+    margin-left: 0;
+  }
+}
+@media screen and (min-width: 800px) and (max-width: 999px) {
+  .flexgrid .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .flexgrid .container:after {
+    flex: auto;
+    margin: 0 auto;
+    content: "";
+  }
+  .flexgrid .container > * {
+    width: calc( 33.3333333333% - 0.6666666667rem );
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .flexgrid .container > *:nth-child(1) {
+    margin-left: 0;
+  }
+  .flexgrid .container > *:nth-child(3n) {
+    margin-right: 0;
+  }
+  .flexgrid .container > *:nth-child(3n+1) {
+    margin-left: 0;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .flexgrid .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .flexgrid .container:after {
+    flex: auto;
+    margin: 0 auto;
+    content: "";
+  }
+  .flexgrid .container > * {
+    width: calc( 25% - 0.75rem );
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .flexgrid .container > *:nth-child(1) {
+    margin-left: 0;
+  }
+  .flexgrid .container > *:nth-child(4n) {
+    margin-right: 0;
+  }
+  .flexgrid .container > *:nth-child(4n+1) {
+    margin-left: 0;
+  }
+}
+
+/* 
+* Demo Styles
+*/
+.flexgrid {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga", "kern";
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+}
+.flexgrid *, .flexgrid *:before, .flexgrid *:after {
+  box-sizing: border-box;
+}
+.flexgrid body {
+  min-height: 100vh;
+  font-family: "Baloo Tamma", cursive;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1;
+  overflow: hidden;
+}
+.flexgrid .container {
+  padding: 0 1rem;
+}
+.flexgrid .title {
+  font-family: "Baloo Tamma", cursive;
+  font-size: 300%;
+  padding: 2rem 1rem;
+}
+.flexgrid .thing {
+  color: #FEFEFE;
+  font-size: 200%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2.5px 5px rgba(25, 25, 25, 0.1);
+  background: #1dd2af;
+  background: linear-gradient(to bottom, #1dd2af, #17a689);
+  transition: transform .2s;
+}
+.flexgrid .thing:hover {
+  transform: scale(1.08); /* (150% zoom)*/
+}
+.flexgrid .emoji {
+  font-size: 200%;
+  transform: translateY(20%);
+}
+</style>
+<script>
+  // Styled components version, not needed if using scss
+
+/** 
+* Make flexbox grids super easy!
+* ---
+* @param columns  —  Number of columns
+* @param margin  —  Margin with unit
+*/
+
+const flexGrid = ({ columns, margin }) => {
+  const width = `${100 / columns}%`;
+  const unitlessMargin = margin.match(/[\d?.]/g).join('');
+  const unit = margin.match(/[a-zA-Z%]+/g).join('');
+  const calcMargin = (unitlessMargin * columns - unitlessMargin) / columns;
+  return `
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    &:after {
+      flex: auto;
+      margin: 0 auto;
+      content: "";
+    }
+    >* {
+      width: calc(${width} - ${calcMargin});
+      margin-left: ${unitlessMargin / 2}${unit};
+      margin-right: ${unitlessMargin / 2}${unit};
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+      &:nth-child(${columns}n) {
+        margin-right: 0;
+      }
+      &:nth-child(${columns}n + 1) {
+        margin-left: 0;
+      }
+    }
+  `;
+};
+</script>
+<script>
+
+
+
+
+  String.prototype.hashCode = function() {
+    var hash = 0;
+    if (this.length == 0) {
+        return hash;
+    }
+    for (var i = 0; i < this.length; i++) {
+        var char = this.charCodeAt(i);
+        hash = ((hash<<5)-hash)+char;
+        hash = hash & hash; 
+    }
+    return hash;
+  }
+</script>
+<style>
+
+
+
+/* center the blockquote in the page */
+.blockquote-wrapper {
+   display: flex;
+   height: 100vh;
+   padding: 0 20px;
+}
+
+/* Blockquote main style */
+.blockquote {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: #000000;
+    padding: 30px 0;
+    width: 100%;
+    max-width: 95%;
+    z-index: 1;
+    margin: 80px auto;
+    align-self: center;
+    border-top: solid 2px;
+    border-bottom: solid 2px;
+}
+
+/* Blockquote header */
+.blockquote h1 {
+    position: relative;
+    color: #000000;
+    font-size: 2.5vw;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+}
+
+/* Blockquote right double quotes */
+.blockquote:after {
+    position: absolute;
+    content: "”";
+    color: rgba(0, 0, 0, 1);
+    font-size: 10rem;
+    line-height: 0;
+    bottom: -43px;
+    right: 30px;
+}
+
+
+/* Blockquote subheader */
+.blockquote h4 {
+    position: relative;
+    color: #292a2b;
+    font-size: 1.4rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 0;
+    padding-top: 20px;
+    z-index: 1;
+}
+</style>
+</head>
+<body>
+
+  <div class="blockquote">
+    <h1>
+      
+      <script>
+        //enter quotes here
+        var quotes = [
+        ["I want my life to be a story that maybe doesn't have a happy ending, that maybe isn't positive in every chapter, but that is a damn good one to read.","Cal Newport"], 
+        ["A ship is safe in harbor, but that's not what ships are for.","William Shedd"],
+        ["We are what we repeatedly do. Excellence, then, is not an act, but a habit.","Aristotle"],
+        ["A year from now you will wish you had started today.",""],
+        ["I'd rather regret the things I did, than regret the things I didn't do.",""],
+        ["So many of our dreams at first seem impossible, then they seem improbable, and then, when we summon the will, they soon become inevitable.","Christopher Reeve"],
+        ["The best way to get ahead is to get started.",""],
+        ["It is often said that before you die, your life flashes before your eyes. It is in fact true. It's called living.","Terry Pratchet"],
+        ["Pain is temporary. It may last a minute, or an hour, or a day, or a year, but eventually it will subside and something else will take its place. If I quit however, it lasts forever.","Lance Armstrong"],
+        ["If you’ve never tried, how will you know if there’s any chance?","Jack Ma"],
+        ["There are no shortcuts to any place worth going.","Beverly Stills"],
+        ["Success is the sum of small efforts, repeated.","R Collier"],
+        ["Most of the important things in the world have been accomplished by people who have kept on trying when there seemed to be no help at all.","Dale Carnegie"],
+        ["If you don’t build your dreams, someone will hire you to help build theirs.","Tony Gaskin"],
+        ["Keep your dreams alive. Understand to achieve anything requires faith and belief in yourself, vision, hard work, determination, and dedication. Remember all things are possible for those who believe.","Gail Devers"],
+        ["The man who moves a mountain begins by carrying away small stones.","Confucius"],
+        ["Don’t limit yourself. Many people limit themselves to what they think they can do. You can go as far as your mind lets you. What you believe, remember, you can achieve.","Mary Kay Ash"],
+        ["You’ve got to get up every morning with determination if you’re going to go to bed with satisfaction.","George Lorimer"],
+        ["My advice is, never do tomorrow what you can do today. Procrastination is the thief of time.","Charles Dickens ‘David Copperfield’"],
+        ["Your time is limited, don’t waste it living someone else’s life. Don’t be trapped by dogma, which is living the result of other people’s thinking. Don’t let the noise of other’s opinion drowned your own inner voice. And most important, have the courage to follow your heart and intuition, they somehow already know what you truly want to become. Everything else is secondary.","Steve Jobs"],
+        ["If you always do what you've always done, you'll always get what you always got",""],
+        ["If you don't leave your past in the past, it will destroy your future. Live for what today has to offer, not for what yesterday has taken away,",""]
+    
+    
+    
+    
+    
+    
+      ]
+        //get a different quote every day :)
+        let today = new Date().toLocaleDateString()
+        let quote_number = Math.floor((((today+today+today).hashCode())/2147483648/2+0.5) * quotes.length)
+        var selected_quote = quotes[quote_number][0]
+        document.write(selected_quote)
+        </script>
+
+     </h1>
+    <h4>&mdash;
+      <script>
+        var selected_name = quotes[quote_number][1]
+        if(selected_name==""){
+          document.write("unknown")
+        }
+        else{
+          document.write(selected_name)
+        }
+        
+        </script>
+      </script>
+    </h4>
+  </div>
+<!-- partial:index.partial.html -->
+<!--<h1 class='title'>
+
+  <script>
+    //enter quotes here
+    var quotes = [
+    "I want my life to be a story that maybe doesn't have a happy ending, that maybe isn't positive in every chapter, but that is a damn good one to read.<br>~Cal Newport", 
+    "A ship is safe in harbor, but that's not what ships are for.<br>~William Shedd",
+    "We are what we repeatedly do. Excellence, then, is not an act, but a habit.<br>~Aristotle",
+    "A year from now you will wish you had started today.",
+    "I'd rather regret the things I did, than regret the things I didn't do.",
+    "So many of our dreams at first seem impossible, then they seem improbable, and then, when we summon the will, they soon become inevitable.<br>~Christopher Reeve",
+    "The best way to get ahead is to get started.",
+    "It is often said that before you die, your life flashes before your eyes. It is in fact true. It's called living.<br>~Terry Pratchet",
+    "Pain is temporary. It may last a minute, or an hour, or a day, or a year, but eventually it will subside and something else will take its place. If I quit however, it lasts forever.<br>~Lance Armstrong",
+    "If you’ve never tried, how will you know if there’s any chance?<br>~Jack Ma",
+    "There are no shortcuts to any place worth going.<br>Beverly Stills",
+    "Success is the sum of small efforts, repeated.<br>R Collier",
+    "Most of the important things in the world have been accomplished by people who have kept on trying when there seemed to be no help at all.<br>Dale Carnegie",
+    "If you don’t build your dreams, someone will hire you to help build theirs.<br>Tony Gaskin",
+    "Keep your dreams alive. Understand to achieve anything requires faith and belief in yourself, vision, hard work, determination, and dedication. Remember all things are possible for those who believe.<br>~Gail Devers",
+    "The man who moves a mountain begins by carrying away small stones.<br>~Confucius",
+    "Don’t limit yourself. Many people limit themselves to what they think they can do. You can go as far as your mind lets you. What you believe, remember, you can achieve.<br>~Mary Kay Ash",
+    "You’ve got to get up every morning with determination if you’re going to go to bed with satisfaction.<br>~George Lorimer",
+    "My advice is, never do tomorrow what you can do today. Procrastination is the thief of time.<br>~Charles Dickens ‘David Copperfield’",
+    "Your time is limited, don’t waste it living someone else’s life. Don’t be trapped by dogma, which is living the result of other people’s thinking. Don’t let the noise of other’s opinion drowned your own inner voice. And most important, have the courage to follow your heart and intuition, they somehow already know what you truly want to become. Everything else is secondary.<br>~Steve Jobs",
+    "If you always do what you've always done, you'll always get what you always got"
+
+
+
+
+
+
+  ]
+    //get a different quote every day :)
+    let today = new Date().toLocaleDateString()
+    var selected_quote = quotes[Math.floor((((today+today+today).hashCode())/2147483648/2+0.5) * quotes.length)]
+    document.write(selected_quote)
+    </script>
+
+</h1> -->
+<div class='container'>
+  <div class='thing' onclick="location.href='https://app.wakingup.com/'";>Meditation <span class="emoji">🧘‍♀️</span></div>
+  <div class='thing'>Read Kindle <span class="emoji">📖</span></div>
+  <div class='thing'>Do Sport <span class="emoji">🏃‍♀️</span></div>
+  <div class='thing'>Drink water <span class="emoji">🥤</span></div>
+  <script>
+      var myDate = new Date();
+      if(myDate.getDay() == 5){
+        document.write("<div class='thing'>Read newspaper<span class='emoji'>📰</span></div>")
+      }
+  </script>
+</div>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
